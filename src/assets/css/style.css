@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&subset=cyrillic');
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+	min-width: 320px;
+	height: 100%;
+}
+
+body {
+	font-size: 18px;
+	font-family: Roboto, Calibri, sans-serif;
+}
