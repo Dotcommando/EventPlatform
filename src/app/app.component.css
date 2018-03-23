@@ -76,6 +76,12 @@
 		ul.friends-list>li:last-child {
 			margin-bottom:0;
 		}
+		ul.friends-list>li.selected {
+			color:#24bbbb;
+		}
+		ul.friends-list>li.selected a {
+			color:#24bbbb;
+		}
 		ul.friends-list li:before {
 			display:block;
 			content:"";
@@ -86,4 +92,12 @@
 			left:0;
 			background:#fff;
 			opacity:.3;
+			z-index:1;
 		}
+		ul.friends-list>li.selected:before {
+			opacity:.7;
+		}
+			ul.friends-list>li span {
+				position:relative;
+				z-index:2;
+			}

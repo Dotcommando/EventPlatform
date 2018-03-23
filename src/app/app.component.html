@@ -9,6 +9,10 @@
 		<div class="header__header"><h1>{{ title }}</h1></div>
 	</div>
 	<ul class="friends-list">
-		<li *ngFor="let friend of friends" class="effect-boris" [class.effect-boris_click]="friend === selectedFriend" (click)="onSelect(friend)"><span>{{friend.name}}</span></li>
+		<li *ngFor="let friend of friends"
+			[class.selected]="friend === selectedFriend"
+			(click)="onSelect(friend)"
+		><span>{{friend.name}}</span></li>
 	</ul>
+	<app-friend-detail [friend]="selectedFriend"></app-friend-detail>
 </div>

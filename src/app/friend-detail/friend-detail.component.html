@@ -1,0 +1,11 @@
+<div *ngIf="friend">
+
+	<h2>{{ friend.name }}</h2>
+	<div><span>id: </span>{{friend._id}}</div>
+	<div>
+		<label>Имя:
+			<input [(ngModel)]="friend.name" placeholder="Имя друга"/>
+		</label>
+	</div>
+
+</div>
