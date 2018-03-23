@@ -6,12 +6,14 @@ import { FriendsService } from './friends.service';
 
 import { AppComponent } from './app.component';
 import { FriendDetailComponent } from './friend-detail/friend-detail.component';
+import { FriendsListComponent } from './friends-list/friends-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FriendDetailComponent
+    FriendDetailComponent,
+    FriendsListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs/observable/of';
+import { Component} from '@angular/core';
 import { Friend } from './friend';
-import { FriendsService } from './friends.service';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
 	selector: 'body',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css'],
-	providers: [ FriendsService ]
+	styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+
+export class AppComponent {
 
 	title = 'Менеджер контактов';
-	
-	friends: Object;
-
-	selectedFriend: Friend;
 
 	onBorisClick(e:HTMLElement): void {
 		let targetClass: string = "effect-boris_click";
@@ -26,18 +19,10 @@ export class AppComponent implements OnInit {
 		}, 320);
 	}
 
-	onSelect(friend: Friend): void {
-		this.selectedFriend = friend;
-	}
-
-	getFriends(): void {
-		this.friendsService.getFriends().then(result => this.friends = result);
-	}
-
-	constructor(private friendsService: FriendsService) { }
+	constructor() { }
 
 	ngOnInit() {
-		this.getFriends();
+		
 	}
 
 }
