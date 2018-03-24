@@ -1,0 +1,11 @@
+<div *ngIf="messageService.messages.length" class="messages-box">
+
+	<div *ngFor='let message of messageService.messages'
+		class="message message_{{message.type}}"
+		(click)="messageService.clear()"
+		@easeIn
+	>
+	<p> {{message.message}}</p>
+	</div>
+
+</div>
