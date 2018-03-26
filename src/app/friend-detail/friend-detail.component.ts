@@ -30,7 +30,6 @@ export class FriendDetailComponent implements OnInit {
 		const id:string = this.route.snapshot.paramMap.get('id');
 
 		if (this.friends != undefined) {
-			console.log(this.friends);
 			this.friend = this.friends.find(friend => friend._id === id);
 		}
 

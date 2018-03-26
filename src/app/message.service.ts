@@ -1,20 +1,38 @@
 import { Injectable } from '@angular/core';
 
+export class timer {
+	message: string;
+	index: number;
+	timer: Object;
+}
+
+export class message {
+	message: string;
+	type: string;
+}
+
 @Injectable()
 export class MessageService {
 
-	messages: Object[] = [];
+	messages: message[] = [];
 
-	add(message: Object) {
+	timersArray: Array<timer> = [];
+
+	add(message: message):void {
 		this.messages.push(message);
-		let last = this.messages.length - 1;
-		setTimeout(() => {
-			this.messages.splice(last, 1);
-		}, 5000);
+		this.timersArray.push({
+			message: message.message,
+			index:this.timersArray.length,
+			timer: setTimeout(() => {
+				this.messages.splice(0, 1);
+				this.timersArray.splice(0, 1);
+			}, 5000)
+		});
 	}
 
-	clear() {
+	clear():void {
 		this.messages = [];
+		this.timersArray = [];
 	}
 
 	constructor() { }

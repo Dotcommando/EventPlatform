@@ -9,6 +9,7 @@
 		display:block;
 		position:relative;
 		padding:20px 12px;
+		margin:0 0 12px 0;
 	}
 		.message:before {
 			position:absolute;

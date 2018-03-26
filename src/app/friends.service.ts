@@ -50,11 +50,15 @@ export class FriendsService {
 */
 
 	getFriends():any {
+		//console.log("this.friends === " + this.friends);
+		//console.log("this.friendsObservable === " + this.friendsObservable);
 		if (this.friends) {
-			console.log(1);
+			//console.log(true);
+			this.messageService.add({message: 'Список из кэша загружен.', type: 'default'});
 			return of(this.friends);
 		} else {
-			console.log(2);
+			//console.log(false);
+			this.messageService.add({message: 'Список друзей загружен.', type: 'success'});
 			return this.friendsObservable;
 		}
 	}

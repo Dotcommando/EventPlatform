@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { FriendDetailComponent } from './friend-detail/friend-detail.component';
 import { FriendsListComponent } from './friends-list/friends-list.component';
 import { MessageService } from './message.service';
-import { SharedFriendsService } from './shared-friends.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -29,7 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 	HttpModule,
 	AppRoutingModule
   ],
-  providers: [FriendsService, MessageService, SharedFriendsService],
+  providers: [FriendsService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
