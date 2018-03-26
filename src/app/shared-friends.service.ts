@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
+import { Friend } from './friend';
+import { MessageService } from './message.service';
+import { FriendsService } from './friends.service';
 
 @Injectable()
 export class SharedFriendsService {
 
-    private friends = new Subject<any>();
+	constructor(private friendsService: FriendsService) { }
 
-    shareFriends(friends: Object) {
-        this.friends.next(friends);
-    }
-
-    clearFriends() {
-        this.friends.next();
-    }
-
-    getFriends(): Observable<any> {
-        return this.friends.asObservable();
-    }
-
+	private friends: Observable<Friend[]>;
+/*
+	getFriends():Observable<Friend[]> { // забирает массив объектов Friend из файла
+		this.friendsService.getFriends().subscribe(result => {
+			this.friends = result.json();
+			console.log(this.friends); // Массив объектов, как и надо: (23) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+			return this.friends;
+		});
+		return this.friends;
+	}
+*/
 }

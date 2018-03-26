@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Friend } from '../friend';
 import { FriendsService } from '../friends.service';
-import { SharedFriendsService } from '../shared-friends.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
 	selector: 'app-friend-detail',
@@ -13,42 +13,40 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class FriendDetailComponent implements OnInit {
 
-	subscription: Subscription;
-
 	friend: Friend;
 
-	friends: Object;
+	friends: Friend[];
 
 	constructor(
 		private route: ActivatedRoute,
 		private friendsService: FriendsService,
-		private location: Location,
-		private sharedFriends: SharedFriendsService
-	) {
+		private location: Location
+	) { }
 
-		this.subscription = this.sharedFriends.getFriends().subscribe(friends => {
-			this.friends = friends;
-			//console.log(this.friends);
-		});
+	ngOnInit() {
+
+		this.getFriends();
+
+		const id:string = this.route.snapshot.paramMap.get('id');
+
+		if (this.friends != undefined) {
+			console.log(this.friends);
+			this.friend = this.friends.find(friend => friend._id === id);
+		}
 
 	}
 
-	ngOnInit(): void {
-
-		const id:string = this.route.snapshot.paramMap.get('id');
-		//this.friend = this.friends.find(id => {this._id = id});
-		console.log(this.friends);
-
+	getFriends():void {
+		this.friendsService.getFriends().subscribe(result => {this.friends = result;});
 	}
 
+	//getFriend(): void {
 
-	getFriend(): void {
-
-		const id:string = this.route.snapshot.paramMap.get('id');
+	//	const id:string = this.route.snapshot.paramMap.get('id');
 		//this.friendsService.getFriend(id).subscribe(friend => this.friend = friend); // забираем из промиса
 		//this.friendsService.getFriend(id);
 		//let friend: Object = friendsListComponent.friends.find(friend => friend._id === id);
 
-	}
+	//}
 
 }

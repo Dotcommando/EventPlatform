@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Friend } from '../friend';
 import { FriendsService } from '../friends.service';
-import { SharedFriendsService } from '../shared-friends.service';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-friends-list',
@@ -11,7 +12,7 @@ import { SharedFriendsService } from '../shared-friends.service';
 
 export class FriendsListComponent implements OnInit {
 
-	public friends: Object;
+	friends: Friend[];
 
 	selectedFriend: Friend;
 
@@ -19,22 +20,18 @@ export class FriendsListComponent implements OnInit {
 		this.selectedFriend = friend;
 	}
 
-	getFriends(): void {
+	getFriends():void {
+		this.friendsService.getFriends().subscribe(result => {this.friends = result;});
 		//this.friendsService.getFriends().then(result => this.friends = result); // забираем при помощи промиса
-		this.friendsService.getFriends().subscribe(result => {
-			this.friends = result.json();
-			this.shareFriends();
-		});
+		//this.friendsService.getFriends().subscribe(result => {
+		//	this.friends = result.json();
+		//	this.shareFriends();
+		//});
 	}
 
-	shareFriends():void {
-		this.sharedFriends.shareFriends(this.friends);
-	}
-
-	constructor(private friendsService: FriendsService, private sharedFriends: SharedFriendsService) { }
+	constructor(private friendsService: FriendsService) { }
 
 	ngOnInit() {
 		this.getFriends();
 	}
-
 }
