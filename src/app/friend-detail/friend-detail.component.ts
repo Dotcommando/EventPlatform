@@ -29,8 +29,13 @@ export class FriendDetailComponent implements OnInit {
 
 		const id:string = this.route.snapshot.paramMap.get('id');
 
-		if (this.friends != undefined) {
-			this.friend = this.friends.find(friend => friend._id === id);
+		let checkReady: Object;
+
+		if (this.friends == undefined) {
+			checkReady = setInterval(() => this.selectFriend(id), 500);
+		} else {
+			this.selectFriend(id);
+			checkReady = {};
 		}
 
 	}
@@ -39,13 +44,13 @@ export class FriendDetailComponent implements OnInit {
 		this.friendsService.getFriends().subscribe(result => {this.friends = result;});
 	}
 
+	selectFriend(id: string):void {
+		this.friend = this.friends.find(friend => friend._id === id);
+	}
+
 	//getFriend(): void {
-
-	//	const id:string = this.route.snapshot.paramMap.get('id');
+		//const id:string = this.route.snapshot.paramMap.get('id');
 		//this.friendsService.getFriend(id).subscribe(friend => this.friend = friend); // забираем из промиса
-		//this.friendsService.getFriend(id);
-		//let friend: Object = friendsListComponent.friends.find(friend => friend._id === id);
-
 	//}
 
 }

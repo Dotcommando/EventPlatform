@@ -19,13 +19,14 @@ export class FriendsService {
 	private friendsObservable: Observable<any>;
 
 	constructor(private http: Http, private messageService: MessageService) {
-		//this.getFriends().subscribe();
+
 		this.friendsObservable = this.http.get(this.apiHost)
 			.map(response => response.json())
 			.do(friends => {
 				this.friends = friends;
 			})
 			.share();
+
 	}
 
 	// Забираем json промисом
@@ -41,23 +42,12 @@ export class FriendsService {
 			});
 	}
 */
-/*
-	getFriends(): Observable<any> {
-
-		return this.http.get(this.apiHost);
-
-	}
-*/
 
 	getFriends():any {
-		//console.log("this.friends === " + this.friends);
-		//console.log("this.friendsObservable === " + this.friendsObservable);
 		if (this.friends) {
-			//console.log(true);
 			this.messageService.add({message: 'Список из кэша загружен.', type: 'default'});
 			return of(this.friends);
 		} else {
-			//console.log(false);
 			this.messageService.add({message: 'Список друзей загружен.', type: 'success'});
 			return this.friendsObservable;
 		}
