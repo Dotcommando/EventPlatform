@@ -10,7 +10,9 @@ import { AppComponent } from './app.component';
 import { FriendDetailComponent } from './friend-detail/friend-detail.component';
 import { FriendsListComponent } from './friends-list/friends-list.component';
 import { MessageService } from './message.service';
+import { SharedFriendsService } from './shared-friends.service';
 import { MessagesComponent } from './messages/messages.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -24,9 +26,10 @@ import { MessagesComponent } from './messages/messages.component';
     BrowserModule,
 	BrowserAnimationsModule,
 	FormsModule,
-	HttpModule
+	HttpModule,
+	AppRoutingModule
   ],
-  providers: [FriendsService, MessageService],
+  providers: [FriendsService, MessageService, SharedFriendsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

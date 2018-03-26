@@ -2,6 +2,5 @@
 		<li *ngFor="let friend of friends"
 			[class.selected]="friend === selectedFriend"
 			(click)="onSelect(friend)"
-		><span>{{friend.name}}</span></li>
+		><span><a routerLink="/detail/{{friend._id}}">{{friend.name}}</a></span></li>
 	</ul>
-	<app-friend-detail [friend]="selectedFriend"></app-friend-detail>
