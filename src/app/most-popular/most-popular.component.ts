@@ -89,7 +89,7 @@ export class MostPopularComponent implements OnInit {
 					that.favoriteFriends.push(item);
 				}
 
-			}
+			});
 
 		}
 
