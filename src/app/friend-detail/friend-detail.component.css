@@ -2,6 +2,7 @@
 	margin:2px;
 	position:relative;
 	overflow:hidden;
+	padding:0 0 12px 0;
 }
 .friend-card::before {
 	display:block;

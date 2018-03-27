@@ -35,13 +35,14 @@
 	</div>
 	<div class="friend-card__row">
 		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
-			<button (click)="saveData()">Сохранить</button>
+			<app-stars [id]="friend._id" [stars]="getStars(friend._id)"></app-stars>
 		</div>
 	</div>
 	<div class="friend-card__row">
 		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
-			<app-stars [id]="friend._id" [stars]="getStars(friend._id)"></app-stars>
+			<div class="button button_save button_low-rounded" (click)="saveData()"><span>Сохранить</span></div>
 		</div>
 	</div>
+
 
 </div>

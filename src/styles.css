@@ -41,6 +41,11 @@ a:active {color:#fff;}
 	text-align:center;
 	line-height:22px;
 	height:50px;
+	cursor:pointer;
+}
+.button > span {
+	position:relative;
+	z-index:2;
 }
 	.button::before {
 		position:absolute;
@@ -50,12 +55,30 @@ a:active {color:#fff;}
 		content:"";
 		background:#fff;
 		opacity:.2;
-		border-radius:25px;
 		width:100%;
 		height:100%;
+		z-index:1;
 	}
 	.button_round {
 		width:50px;
+	}
+	.button_round:before {
+		border-radius:25px;
+	}
+	.button_low-rounded:before {
+		border-radius:12px;
+	}
+	.button_save {
+		border:none;
+		color:#fff;
+	}
+	.button_save:before {
+		transition:.3s;
+		background:#08d425;
+		opacity:.7;
+	}
+	.button_save:hover:before {
+		opacity:1;
 	}
 
 /* Эффект «Boris» */
@@ -111,7 +134,7 @@ input[type=number]:focus {
 /* Список друзей */
 
 ul.friends-list {
-	margin:0;
+	margin:0 0 12px 0;
 	padding:0 2px 2px 2px;
 	list-style-type:none;
 }

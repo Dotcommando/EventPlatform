@@ -24,7 +24,7 @@
 			z-index:3;
 		}
 		.message_success:before {
-			background:#02f224;
+			background:#08d425;
 		}
 		.message_danger:before {
 			background:#f5c31d;
