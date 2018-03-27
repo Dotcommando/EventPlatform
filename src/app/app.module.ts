@@ -12,6 +12,7 @@ import { FriendsListComponent } from './friends-list/friends-list.component';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MostPopularComponent } from './most-popular/most-popular.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     FriendDetailComponent,
     FriendsListComponent,
-    MessagesComponent
+    MessagesComponent,
+    MostPopularComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,11 @@ import { AppRoutingModule } from './app-routing.module';
 	HttpModule,
 	AppRoutingModule
   ],
-  providers: [FriendsService, MessageService],
+  providers: [FriendsService, MessageService, { provide: 'LOCALSTORAGE', useFactory: getLocalStorage }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function getLocalStorage() {
+	return (typeof window !== "undefined") ? window.localStorage : null;
+}

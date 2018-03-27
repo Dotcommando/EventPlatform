@@ -26,6 +26,9 @@
 		.message_success:before {
 			background:#02f224;
 		}
+		.message_danger:before {
+			background:#f5c31d;
+		}
 		.message_error:before {
 			background:#f20240;
 		}
