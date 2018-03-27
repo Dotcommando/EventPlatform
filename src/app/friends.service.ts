@@ -45,10 +45,10 @@ export class FriendsService {
 
 	getFriends():any {
 		if (this.friends) {
-			this.messageService.add({message: 'Список из кэша загружен.', type: 'default'});
+			this.messageService.add({message: 'Список взят из кэша', type: 'default'});
 			return of(this.friends);
 		} else {
-			this.messageService.add({message: 'Список друзей загружен.', type: 'success'});
+			this.messageService.add({message: 'Список взят из файла', type: 'success'});
 			return this.friendsObservable;
 		}
 	}

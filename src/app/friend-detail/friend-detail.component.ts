@@ -174,9 +174,11 @@ export class FriendDetailComponent implements OnInit {
 
 	saveData():void {
 
+		let msg = "Данные сохранены";
 		for (let property in this.tempFriend) {
 			this.tempFriend[property] = this.friend[property];
 		}
+		this.messageService.add({message: msg, type: 'success'});
 
 	}
 
