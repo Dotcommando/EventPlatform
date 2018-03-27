@@ -1,8 +1,11 @@
 	<ul class="friends-list">
 		<li *ngFor="let friend of staggeringFriends"
 			[class.selected]="friend === selectedFriend"
-			(click)="onSelect(friend)"
+
 			(@flyInOut.done)="doNext()"
 			[@flyInOut]="'in'"
-		><span><a routerLink="/detail/{{friend._id}}">{{friend.name}}</a></span></li>
+		>
+			<span><a routerLink="/detail/{{friend._id}}">{{friend.name}}</a></span>
+			<span><app-stars [id]="friend._id" [stars]="getStars(friend._id)"></app-stars></span>
+		</li>
 	</ul>

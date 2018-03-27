@@ -7,6 +7,7 @@ import { MessageService } from '../message.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { trigger, state, style, animate, transition, group } from '@angular/animations';
 import { TransferVarsService } from '../transfer-vars.service';
+import { FriendsStars } from '../friends-list/friends-list.component';
 
 @Component({
 	selector: 'app-most-popular',
@@ -38,6 +39,8 @@ export class MostPopularComponent implements OnInit {
 	checkReady: number;
 
 	next: number = 0;
+
+	stars: Array<FriendsStars> = [];
 
 	constructor(
 
@@ -79,7 +82,31 @@ export class MostPopularComponent implements OnInit {
 	}
 
 	getFriends():void {
-		this.friendsService.getFriends().subscribe(result => {this.friends = result;});
+		this.friendsService.getFriends().subscribe(result => {
+			this.friends = result;
+			let that = this;
+			this.friends.forEach(function(item){
+				that.stars.push({id: item._id, stars: that.checkStarsInStorage(item._id)});
+			});
+		});
+	}
+
+	checkStarsInStorage(id: string):number {
+
+		if (!isPlatformBrowser(this.platformId)) return 0;
+
+		let stars: number = 0;
+
+		stars = parseInt(localStorage.getItem(id + "-stars"));
+
+		return ((stars < 6)&&(stars >= 0))? stars : 0;
+
+	}
+
+	getStars(id: string):number {
+
+		return this.stars.find(star => star.id == id).stars;
+
 	}
 
 	fillFavoriteFriends():void {

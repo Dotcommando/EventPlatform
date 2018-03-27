@@ -8,6 +8,7 @@ import { PLATFORM_ID } from '@angular/core';
 import { MessageService } from '../message.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { TransferVarsService } from '../transfer-vars.service';
+import { FriendsStars } from '../friends-list/friends-list.component';
 
 export class ExtendedFriend extends Friend {
 	favorite: boolean;
@@ -56,6 +57,8 @@ export class FriendDetailComponent implements OnInit {
 
 	checkReady: number; // Interval проверки существования массива друзей
 
+	stars: Array<FriendsStars> = [];
+
 	onBorisClick(e:HTMLElement): void {
 		let targetClass: string = "effect-boris_click";
 		e.className += " " + targetClass;
@@ -79,6 +82,8 @@ export class FriendDetailComponent implements OnInit {
 		this.getFriends();
 
 		const id:string = this.route.snapshot.paramMap.get('id');
+
+		this.stars.push({id: id, stars: this.checkStarsInStorage(id)});
 
 		this.checkReady = setInterval(() => {
 			if (this.friends != undefined) {
@@ -179,6 +184,24 @@ export class FriendDetailComponent implements OnInit {
 			this.tempFriend[property] = this.friend[property];
 		}
 		this.messageService.add({message: msg, type: 'success'});
+
+	}
+
+	checkStarsInStorage(id: string):number {
+
+		if (!isPlatformBrowser(this.platformId)) return 0;
+
+		let stars: number = 0;
+
+		stars = parseInt(localStorage.getItem(id + "-stars"));
+
+		return ((stars < 6)&&(stars >= 0))? stars : 0;
+
+	}
+
+	getStars(id: string):number {
+
+		return this.stars.find(star => star.id == id).stars;
 
 	}
 

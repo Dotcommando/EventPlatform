@@ -1,0 +1,12 @@
+<span class="stars">
+<i *ngIf="stars >= 1" (click)="setStars(1);onBorisClick($event.target)" class="fa fa-star gold effect-boris effect-boris_click"></i>
+<i *ngIf="stars >= 2" (click)="setStars(2);onBorisClick($event.target)" class="fa fa-star gold effect-boris effect-boris_click"></i>
+<i *ngIf="stars >= 3" (click)="setStars(3);onBorisClick($event.target)" class="fa fa-star gold effect-boris effect-boris_click"></i>
+<i *ngIf="stars >= 4" (click)="setStars(4);onBorisClick($event.target)" class="fa fa-star gold effect-boris effect-boris_click"></i>
+<i *ngIf="stars >= 5" (click)="setStars(5);onBorisClick($event.target)" class="fa fa-star gold effect-boris effect-boris_click"></i>
+<i *ngIf="stars < 1" (click)="setStars(1);onBorisClick($event.target)" class="fa fa-star effect-boris"></i>
+<i *ngIf="stars < 2" (click)="setStars(2);onBorisClick($event.target)" class="fa fa-star effect-boris"></i>
+<i *ngIf="stars < 3" (click)="setStars(3);onBorisClick($event.target)" class="fa fa-star effect-boris"></i>
+<i *ngIf="stars < 4" (click)="setStars(4);onBorisClick($event.target)" class="fa fa-star effect-boris"></i>
+<i *ngIf="stars < 5" (click)="setStars(5);onBorisClick($event.target)" class="fa fa-star effect-boris"></i>
+</span>

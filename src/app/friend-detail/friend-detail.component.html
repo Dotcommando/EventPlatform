@@ -38,5 +38,10 @@
 			<button (click)="saveData()">Сохранить</button>
 		</div>
 	</div>
+	<div class="friend-card__row">
+		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
+			<app-stars [id]="friend._id" [stars]="getStars(friend._id)"></app-stars>
+		</div>
+	</div>
 
 </div>

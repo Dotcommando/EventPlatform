@@ -14,6 +14,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { TransferVarsService } from './transfer-vars.service';
+import { StarsComponent } from './stars/stars.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TransferVarsService } from './transfer-vars.service';
     FriendDetailComponent,
     FriendsListComponent,
     MessagesComponent,
-    MostPopularComponent
+    MostPopularComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,
