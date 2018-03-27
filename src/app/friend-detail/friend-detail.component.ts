@@ -49,6 +49,10 @@ export class FriendDetailComponent implements OnInit {
 
 	friends: Friend[];
 
+	tempFriend: Friend; // Временная ссылка на объект Friend в глобальном массиве friends
+
+	checkReady: number; // Interval проверки существования массива друзей
+
 	onBorisClick(e:HTMLElement): void {
 		let targetClass: string = "effect-boris_click";
 		e.className += " " + targetClass;
@@ -72,14 +76,12 @@ export class FriendDetailComponent implements OnInit {
 
 		const id:string = this.route.snapshot.paramMap.get('id');
 
-		let checkReady: Object;
-
-		if (this.friends == undefined) {
-			checkReady = setInterval(() => this.selectFriend(id), 500);
-		} else {
+		this.checkReady = setInterval(() => {
+			if (this.friends != undefined) {
+				clearInterval(this.checkReady);
+			}
 			this.selectFriend(id);
-			checkReady = {};
-		}
+		}, 500);
 
 	}
 
@@ -151,14 +153,24 @@ export class FriendDetailComponent implements OnInit {
 
 		this.friend = new ExtendedFriend(false);
 
-		let tempFriend = new Friend;
-		tempFriend = this.friends.find(friend => friend._id === id);
+		this.tempFriend = new Friend;
+		this.tempFriend = this.friends.find(friend => friend._id === id);
 
-		for (let property in tempFriend) {
-			this.friend[property] = tempFriend[property];
+		for (let property in this.tempFriend) {
+			this.friend[property] = this.tempFriend[property];
 		}
 
 		this.friend.favorite = this.checkValInStorage();
+
+		clearInterval(this.checkReady);
+
+	}
+
+	saveData():void {
+
+		for (let property in this.tempFriend) {
+			this.tempFriend[property] = this.friend[property];
+		}
 
 	}
 

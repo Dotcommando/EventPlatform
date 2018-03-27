@@ -29,7 +29,13 @@
 			</div>
 		</div>
 		<div class="friend-card__cell friend-card__cell_width-60">
-			<label for="friend-card__favorite">избранный</label>
+			<label *ngIf="friend.gender == 'female'" for="friend-card__favorite">избранная</label>
+			<label *ngIf="friend.gender == 'male'" for="friend-card__favorite">избранный</label>
+		</div>
+	</div>
+	<div class="friend-card__row">
+		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
+			<button (click)="saveData()">Сохранить</button>
 		</div>
 	</div>
 
