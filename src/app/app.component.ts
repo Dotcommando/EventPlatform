@@ -1,5 +1,6 @@
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Friend } from './friend';
+import { TransferVarsService } from './transfer-vars.service';
 
 @Component({
 	selector: 'body',
@@ -7,9 +8,9 @@ import { Friend } from './friend';
 	styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-	title = 'Менеджер контактов';
+	title:string = 'Менеджер контактов';
 
 	onBorisClick(e:HTMLElement): void {
 		let targetClass: string = "effect-boris_click";
@@ -19,10 +20,8 @@ export class AppComponent {
 		}, 320);
 	}
 
-	constructor() { }
+	constructor(private transferVarsService: TransferVarsService) { }
 
-	ngOnInit() {
-		
-	}
+	ngOnInit() { }
 
 }

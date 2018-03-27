@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { PLATFORM_ID } from '@angular/core';
 import { MessageService } from '../message.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { TransferVarsService } from '../transfer-vars.service';
 
 export class ExtendedFriend extends Friend {
 	favorite: boolean;
@@ -45,6 +46,8 @@ export class ExtendedFriend extends Friend {
 })
 export class FriendDetailComponent implements OnInit {
 
+	title: string = "Редактирование";
+
 	friend: ExtendedFriend;
 
 	friends: Friend[];
@@ -66,6 +69,7 @@ export class FriendDetailComponent implements OnInit {
 		private friendsService: FriendsService,
 		private location: Location,
 		private messageService: MessageService,
+		private transferVarsService: TransferVarsService,
 		@Inject(PLATFORM_ID) private platformId: any,
 		@Inject('LOCALSTORAGE') private localStorage: any
 	) { }
@@ -82,6 +86,8 @@ export class FriendDetailComponent implements OnInit {
 			}
 			this.selectFriend(id);
 		}, 500);
+
+		this.transferVarsService.setTitle(this.title);
 
 	}
 

@@ -6,6 +6,7 @@ import { PLATFORM_ID } from '@angular/core';
 import { MessageService } from '../message.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { trigger, state, style, animate, transition, group } from '@angular/animations';
+import { TransferVarsService } from '../transfer-vars.service';
 
 @Component({
 	selector: 'app-most-popular',
@@ -26,6 +27,8 @@ import { trigger, state, style, animate, transition, group } from '@angular/anim
 })
 export class MostPopularComponent implements OnInit {
 
+	title: string = "Избранные";
+
 	friends: Friend[];
 
 	favoriteFriends: Friend[] = [];
@@ -40,6 +43,7 @@ export class MostPopularComponent implements OnInit {
 
 		private friendsService: FriendsService,
 		private messageService: MessageService,
+		private transferVarsService: TransferVarsService,
 		@Inject(PLATFORM_ID) private platformId: any,
 		@Inject('LOCALSTORAGE') private localStorage: any
 
@@ -56,6 +60,8 @@ export class MostPopularComponent implements OnInit {
 				this.doNext();
 			}
 		}, 500);
+
+		this.transferVarsService.setTitle(this.title);
 
 	}
 

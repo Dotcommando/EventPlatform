@@ -13,6 +13,7 @@ import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MostPopularComponent } from './most-popular/most-popular.component';
+import { TransferVarsService } from './transfer-vars.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { MostPopularComponent } from './most-popular/most-popular.component';
 	HttpModule,
 	AppRoutingModule
   ],
-  providers: [FriendsService, MessageService, { provide: 'LOCALSTORAGE', useFactory: getLocalStorage }],
+  providers: [FriendsService, MessageService, TransferVarsService, { provide: 'LOCALSTORAGE', useFactory: getLocalStorage }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
