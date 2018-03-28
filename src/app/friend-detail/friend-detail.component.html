@@ -1,5 +1,10 @@
 <div *ngIf="friend" class="friend-card">
 
+	<div class="friend-card__row" *ngIf="notAvailable">
+		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center friend-card__danger">
+			<span>Пользователь на найден.</span>
+		</div>
+	</div>
 	<div class="friend-card__row">
 		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
 			<h2>{{ friend.name }}</h2>
@@ -18,29 +23,29 @@
 			<label for="friend-card__name">Имя:</label>
 		</div>
 		<div class="friend-card__cell friend-card__cell_width-60">
-			<input id="friend-card__name" type="text" [(ngModel)]="friend.name" placeholder="Имя друга"/>
+			<input *ngIf="!notAvailable" id="friend-card__name" type="text" [(ngModel)]="friend.name" placeholder="Имя друга"/>
 		</div>
 	</div>
 	<div class="friend-card__row">
 		<div class="friend-card__cell friend-card__cell_width-40 friend-card__cell_ta-right">
 			<div class="checkbox_fav checkbox_fav-right">
-				<input id="friend-card__favorite" type="checkbox" (ngModelChange)="favoriteChanging()" [(ngModel)]="friend.favorite" placeholder="Имя друга"/>
-				<label for="friend-card__favorite"><i class="fa fa-heart effect-boris" (click)="onBorisClick($event.target)"></i></label>
+				<input *ngIf="!notAvailable" id="friend-card__favorite" type="checkbox" (ngModelChange)="favoriteChanging()" [(ngModel)]="friend.favorite" placeholder="Имя друга"/>
+				<label *ngIf="!notAvailable" for="friend-card__favorite"><i class="fa fa-heart effect-boris" (click)="onBorisClick($event.target)"></i></label>
 			</div>
 		</div>
-		<div class="friend-card__cell friend-card__cell_width-60">
+		<div *ngIf="!notAvailable" class="friend-card__cell friend-card__cell_width-60">
 			<label *ngIf="friend.gender == 'female'" for="friend-card__favorite">избранная</label>
 			<label *ngIf="friend.gender == 'male'" for="friend-card__favorite">избранный</label>
 		</div>
 	</div>
 	<div class="friend-card__row">
 		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
-			<app-stars [id]="friend._id" [stars]="getStars(friend._id)"></app-stars>
+			<app-stars *ngIf="!notAvailable" [id]="friend._id" [stars]="getStars(friend._id)"></app-stars>
 		</div>
 	</div>
 	<div class="friend-card__row">
 		<div class="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
-			<div class="button button_save button_low-rounded" (click)="saveData()"><span>Сохранить</span></div>
+			<div *ngIf="!notAvailable" class="button button_save button_low-rounded" (click)="saveData()"><span>Сохранить</span></div>
 		</div>
 	</div>
 

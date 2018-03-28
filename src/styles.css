@@ -14,10 +14,10 @@ html, body {
 body {
 	font-size: 18px;
 	font-family: Roboto, Calibri, sans-serif;
-	background: #8a1dda;
-	background: -moz-linear-gradient(45deg, #8a1dda 0%, #3c9ffc 100%);
-	background: -webkit-linear-gradient(45deg, #8a1dda 0%,#3c9ffc 100%);
-	background: linear-gradient(45deg, #8a1dda 0%,#3c9ffc 100%);
+	background: #182340;
+	background: -moz-linear-gradient(45deg, #182340 0%, #3c9ffc 100%);
+	background: -webkit-linear-gradient(45deg, #182340 0%,#3c9ffc 100%);
+	background: linear-gradient(45deg, #182340 0%,#3c9ffc 100%);
 	background-attachment:fixed;
 	color:#fff;
 }

@@ -61,6 +61,9 @@
 		.friend-card__cell_width-60 {
 			width:60%;
 		}
+		.friend-card__danger {
+			background:#d10c31;
+		}
 			.checkbox_fav {
 				position:relative;
 				width:80px;
@@ -81,6 +84,6 @@
 					transition: opacity, color 300ms linear;
 				}
 				.checkbox_fav input[type=checkbox]:checked + label {
-					color:#24bbbb;
+					color:#4ce4e4;
 					opacity:1;
 				}

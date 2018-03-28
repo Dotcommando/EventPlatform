@@ -47,6 +47,8 @@ export class ExtendedFriend extends Friend {
 })
 export class FriendDetailComponent implements OnInit {
 
+	notAvailable:boolean = false;
+
 	title: string = "Редактирование";
 
 	friend: ExtendedFriend;
@@ -83,7 +85,9 @@ export class FriendDetailComponent implements OnInit {
 
 		const id:string = this.route.snapshot.paramMap.get('id');
 
-		this.stars.push({id: id, stars: this.checkStarsInStorage(id)});
+		if ((this.stars != undefined) && (this.stars.length > 0)) {
+			this.stars.push({id: id, stars: this.checkStarsInStorage(id)});
+		}
 
 		this.checkReady = setInterval(() => {
 			if (this.friends != undefined) {
@@ -174,6 +178,8 @@ export class FriendDetailComponent implements OnInit {
 
 		this.friend.favorite = this.checkValInStorage();
 
+		if (this.tempFriend == undefined) this.notAvailable = true;
+
 		clearInterval(this.checkReady);
 
 	}
@@ -202,6 +208,7 @@ export class FriendDetailComponent implements OnInit {
 
 	getStars(id: string):number {
 
+		if ((this.stars == undefined) || (this.stars.length < 1)) return 0;
 		return this.stars.find(star => star.id == id).stars;
 
 	}
