@@ -60,6 +60,7 @@ export class MostPopularComponent implements OnInit {
 			if (this.friends != undefined) {
 				clearInterval(this.checkReady);
 				this.fillFavoriteFriends();
+				this.transferVarsService.setFriends(this.favoriteFriends);
 				this.doNext();
 			}
 		}, 500);

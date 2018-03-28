@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
 	title:string = 'Менеджер контактов';
 
+	friends: Friend[] = [];
+
 	onBorisClick(e:HTMLElement): void {
 		let targetClass: string = "effect-boris_click";
 		e.className += " " + targetClass;
@@ -22,6 +24,6 @@ export class AppComponent implements OnInit {
 
 	constructor(private transferVarsService: TransferVarsService) { }
 
-	ngOnInit() { }
+	ngOnInit() {}
 
 }

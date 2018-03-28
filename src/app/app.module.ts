@@ -15,6 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { TransferVarsService } from './transfer-vars.service';
 import { StarsComponent } from './stars/stars.component';
+import { SearchComponent } from './search/search.component';
+import { SearchFriendsPipe } from './search-friends.pipe';
+import { SearchDirective } from './search.directive';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { StarsComponent } from './stars/stars.component';
     FriendsListComponent,
     MessagesComponent,
     MostPopularComponent,
-    StarsComponent
+    StarsComponent,
+    SearchComponent,
+    SearchFriendsPipe,
+    SearchDirective
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,7 @@ import { StarsComponent } from './stars/stars.component';
 	HttpModule,
 	AppRoutingModule
   ],
-  providers: [FriendsService, MessageService, TransferVarsService, { provide: 'LOCALSTORAGE', useFactory: getLocalStorage }],
+  providers: [FriendsService, MessageService, TransferVarsService, SearchFriendsPipe, { provide: 'LOCALSTORAGE', useFactory: getLocalStorage }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

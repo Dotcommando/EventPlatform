@@ -78,6 +78,7 @@ export class FriendsListComponent implements OnInit {
 			this.friends.forEach(function(item){
 				that.stars.push({id: item._id, stars: that.checkStarsInStorage(item._id)});
 			});
+			this.transferVarsService.setFriends(this.friends);
 		});
 
 		//this.friendsService.getFriends().then(result => this.friends = result); // забираем при помощи промиса

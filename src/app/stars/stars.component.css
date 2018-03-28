@@ -1,3 +1,7 @@
+.stars {
+	display:inline-block;
+	min-width:102px;
+}
 .gold {
 	color: #e6c664;
 }

@@ -90,6 +90,7 @@ export class FriendDetailComponent implements OnInit {
 				clearInterval(this.checkReady);
 			}
 			this.selectFriend(id);
+			this.transferVarsService.setFriends(this.friends);
 		}, 500);
 
 		this.transferVarsService.setTitle(this.title);
