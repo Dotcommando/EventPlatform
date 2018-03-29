@@ -59,6 +59,9 @@ a:active {color:#fff;}
 		height:100%;
 		z-index:1;
 	}
+	.button.active {
+		color:#4ce4e4;
+	}
 	.button_round {
 		width:50px;
 	}

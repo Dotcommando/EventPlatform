@@ -17,9 +17,10 @@ export class SearchComponent implements OnInit {
 		this.filteredFriends = friends;
 	}
 
-	constructor(private transferVarsService: TransferVarsService) { }
+	constructor(
+		private transferVarsService: TransferVarsService
+	) { }
 
-	ngOnInit() {
-	}
+	ngOnInit() { }
 
 }

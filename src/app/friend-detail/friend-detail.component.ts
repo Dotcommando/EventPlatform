@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Friend } from '../friend';
 import { FriendsService } from '../friends.service';
@@ -9,6 +9,7 @@ import { MessageService } from '../message.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { TransferVarsService } from '../transfer-vars.service';
 import { FriendsStars } from '../friends-list/friends-list.component';
+import { Subscription } from 'rxjs/Subscription';
 
 export class ExtendedFriend extends Friend {
 	favorite: boolean;
@@ -47,7 +48,11 @@ export class ExtendedFriend extends Friend {
 })
 export class FriendDetailComponent implements OnInit {
 
+	private subscription: Subscription;
+
 	notAvailable:boolean = false;
+
+	id: string;
 
 	title: string = "Редактирование";
 
@@ -59,7 +64,7 @@ export class FriendDetailComponent implements OnInit {
 
 	checkReady: number; // Interval проверки существования массива друзей
 
-	stars: Array<FriendsStars> = [];
+	stars: number = 0;
 
 	onBorisClick(e:HTMLElement): void {
 		let targetClass: string = "effect-boris_click";
@@ -71,33 +76,45 @@ export class FriendDetailComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute,
+		private router: Router,
 		private friendsService: FriendsService,
 		private location: Location,
 		private messageService: MessageService,
 		private transferVarsService: TransferVarsService,
 		@Inject(PLATFORM_ID) private platformId: any,
 		@Inject('LOCALSTORAGE') private localStorage: any
-	) { }
+	) {
+		//this.subscription = this.route.snapshot.subscribe(params => this.id = params['id']);
+	}
 
 	ngOnInit() {
 
 		this.getFriends();
 
-		const id:string = this.route.snapshot.paramMap.get('id');
+		this.id = this.route.snapshot.paramMap.get('id');
 
-		if ((this.stars != undefined) && (this.stars.length > 0)) {
-			this.stars.push({id: id, stars: this.checkStarsInStorage(id)});
+		if (this.stars != undefined) {
+			this.stars = this.checkStarsInStorage(this.id);
 		}
 
 		this.checkReady = setInterval(() => {
 			if (this.friends != undefined) {
 				clearInterval(this.checkReady);
 			}
-			this.selectFriend(id);
+			this.selectFriend(this.id);
 			this.transferVarsService.setFriends(this.friends);
 		}, 500);
 
 		this.transferVarsService.setTitle(this.title);
+
+		this.route.params.subscribe(params => {
+			this.id = params['id'];
+			this.router.navigate(['/detail/' + this.id]);
+			if (this.friends != undefined) {
+				this.selectFriend(this.id);
+				this.stars = this.checkStarsInStorage(this.id);
+			}
+		});
 
 	}
 
@@ -203,13 +220,6 @@ export class FriendDetailComponent implements OnInit {
 		stars = parseInt(localStorage.getItem(id + "-stars"));
 
 		return ((stars < 6)&&(stars >= 0))? stars : 0;
-
-	}
-
-	getStars(id: string):number {
-
-		if ((this.stars == undefined) || (this.stars.length < 1)) return 0;
-		return this.stars.find(star => star.id == id).stars;
 
 	}
 
